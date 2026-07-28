@@ -1,19 +1,21 @@
-import { useState } from "react";
-import { Link, useNavigate } from "@tanstack/react-router";
-import { Menu, Search } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
+import { Menu, Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { CartDrawer } from "./CartDrawer";
-import { BrandMark } from "./BrandMark";
+import { BrandLogo } from "./BrandMark";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   { to: "/produtos", label: "Explorar Produtos" },
   { to: "/nossa-historia", label: "Nossa História" },
   { to: "/atacado", label: "Atacado" },
+  { to: "/duvidas", label: "Dúvidas" },
 ] as const;
 
-function SearchForm({ onDone }: { onDone?: () => void }) {
+function SearchForm({ onDone, autoFocus }: { onDone?: () => void; autoFocus?: boolean }) {
   const navigate = useNavigate();
   const [term, setTerm] = useState("");
 
@@ -29,11 +31,12 @@ function SearchForm({ onDone }: { onDone?: () => void }) {
     >
       <Search className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
       <Input
+        autoFocus={autoFocus}
         value={term}
         onChange={(e) => setTerm(e.target.value)}
         placeholder="Buscar cruzes, medalhas, entremeios…"
         aria-label="Buscar produtos"
-        className="h-10 rounded-full border-border bg-secondary/60 pl-9 text-sm"
+        className="h-10 rounded-full border-border bg-background/90 pl-9 text-sm"
       />
     </form>
   );
@@ -41,40 +44,85 @@ function SearchForm({ onDone }: { onDone?: () => void }) {
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const overHero = pathname === "/";
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const solid = !overHero || scrolled || hovered || searchOpen || mobileOpen;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4 sm:px-6 lg:h-20 lg:px-8">
-        <Link to="/" className="flex flex-shrink-0 items-center gap-2.5" aria-label="Página inicial">
-          <BrandMark className="h-8 w-8 lg:h-10 lg:w-10" />
-          <span className="hidden leading-tight sm:block">
-            <span className="text-display block text-[15px] lg:text-base">Arte Camargos</span>
-            <span className="eyebrow block text-[9px] text-madeira">Bijouterias</span>
-          </span>
-        </Link>
+    <header
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className={cn(
+        "fixed top-0 right-0 left-0 z-50 transition-colors duration-300",
+        solid ? "bg-linho text-foreground" : "text-white",
+      )}
+    >
+      {!solid && (
+        <span className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[160%] bg-[linear-gradient(to_bottom,rgba(12,23,88,0.55),transparent)]" />
+      )}
 
-        <div className="mx-auto hidden max-w-md flex-1 md:block">
-          <SearchForm />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Linha 1: logo em destaque */}
+        <div className="flex items-center justify-between py-3 lg:py-4">
+          <span className="w-10 lg:w-24" />
+          <Link to="/" aria-label="Página inicial" className="mx-auto block">
+            <BrandLogo
+              className={cn(
+                "h-14 w-auto transition-all duration-300 lg:h-20",
+                solid ? "" : "brightness-0 invert",
+              )}
+            />
+          </Link>
+          <div className="flex w-10 items-center justify-end lg:w-24">
+            <div className="flex items-center lg:hidden">
+              <CartDrawer />
+            </div>
+          </div>
         </div>
 
-        <nav className="ml-auto hidden items-center gap-6 lg:flex" aria-label="Navegação principal">
-          {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className="text-[13px] font-semibold text-foreground/80 transition-colors hover:text-cobalto"
-              activeProps={{ className: "text-cobalto" }}
+        {/* Linha 2: navegação */}
+        <div className="relative hidden items-center justify-center pb-4 lg:flex">
+          <nav className="flex items-center gap-8" aria-label="Navegação principal">
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="text-[13px] font-semibold tracking-wide transition-opacity hover:opacity-70"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <div className="absolute right-0 flex items-center gap-1">
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label={searchOpen ? "Fechar busca" : "Buscar"}
+              onClick={() => setSearchOpen((v) => !v)}
+              className="hover:bg-transparent hover:opacity-70"
             >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+              {searchOpen ? <X className="h-5 w-5" /> : <Search className="h-5 w-5" />}
+            </Button>
+            <CartDrawer />
+          </div>
+        </div>
 
-        <div className="ml-auto flex items-center gap-1 lg:ml-4">
-          <CartDrawer />
+        {/* Mobile: menu */}
+        <div className="flex items-center justify-between pb-3 lg:hidden">
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Abrir menu">
+              <Button variant="ghost" size="icon" aria-label="Abrir menu">
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
@@ -97,14 +145,24 @@ export function Header() {
               </div>
             </SheetContent>
           </Sheet>
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label="Buscar"
+            onClick={() => setSearchOpen((v) => !v)}
+          >
+            {searchOpen ? <X className="h-5 w-5" /> : <Search className="h-5 w-5" />}
+          </Button>
         </div>
-      </div>
-      <div className="md:hidden">
-        <div className="mx-auto max-w-7xl px-4 pb-3 sm:px-6">
-          <SearchForm />
-        </div>
+
+        {searchOpen && (
+          <div className="pb-4">
+            <div className="mx-auto max-w-xl">
+              <SearchForm autoFocus onDone={() => setSearchOpen(false)} />
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );
-
 }
