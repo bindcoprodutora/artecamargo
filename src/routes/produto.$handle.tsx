@@ -22,7 +22,14 @@ import {
 } from "@/components/ui/breadcrumb";
 import { ProductCard } from "@/components/site/ProductCard";
 import { useCartStore } from "@/stores/cartStore";
-import { fetchProductByHandle, fetchProducts, formatPrice, swatchColor } from "@/lib/shopify";
+import {
+  fetchProductByHandle,
+  fetchProducts,
+  formatPrice,
+  swatchColor,
+  type ShopifyProduct,
+} from "@/lib/shopify";
+
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/produto/$handle")({
@@ -64,8 +71,9 @@ export const Route = createFileRoute("/produto/$handle")({
 });
 
 function ProdutoDetalhe() {
-  const { product } = Route.useLoaderData();
+  const { product } = Route.useLoaderData() as { product: ShopifyProduct };
   const node = product.node;
+
   const addItem = useCartStore((s) => s.addItem);
   const isLoading = useCartStore((s) => s.isLoading);
   const getCheckoutUrl = useCartStore((s) => s.getCheckoutUrl);
