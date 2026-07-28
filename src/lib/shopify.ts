@@ -50,7 +50,6 @@ const PRODUCT_FIELDS = `
         title
         price { amount currencyCode }
         availableForSale
-        quantityAvailable
         selectedOptions { name value }
         image { url altText }
       }
