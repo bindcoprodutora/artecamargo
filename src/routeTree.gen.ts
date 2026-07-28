@@ -9,38 +9,181 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ProdutosRouteImport } from './routes/produtos'
+import { Route as NossaHistoriaRouteImport } from './routes/nossa-historia'
+import { Route as DuvidasRouteImport } from './routes/duvidas'
+import { Route as AtacadoRouteImport } from './routes/atacado'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProdutoHandleRouteImport } from './routes/produto.$handle'
+import { Route as PoliticasTrocasRouteImport } from './routes/politicas.trocas'
+import { Route as PoliticasPrivacidadeRouteImport } from './routes/politicas.privacidade'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProdutosRoute = ProdutosRouteImport.update({
+  id: '/produtos',
+  path: '/produtos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NossaHistoriaRoute = NossaHistoriaRouteImport.update({
+  id: '/nossa-historia',
+  path: '/nossa-historia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DuvidasRoute = DuvidasRouteImport.update({
+  id: '/duvidas',
+  path: '/duvidas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtacadoRoute = AtacadoRouteImport.update({
+  id: '/atacado',
+  path: '/atacado',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProdutoHandleRoute = ProdutoHandleRouteImport.update({
+  id: '/produto/$handle',
+  path: '/produto/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticasTrocasRoute = PoliticasTrocasRouteImport.update({
+  id: '/politicas/trocas',
+  path: '/politicas/trocas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticasPrivacidadeRoute = PoliticasPrivacidadeRouteImport.update({
+  id: '/politicas/privacidade',
+  path: '/politicas/privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/atacado': typeof AtacadoRoute
+  '/duvidas': typeof DuvidasRoute
+  '/nossa-historia': typeof NossaHistoriaRoute
+  '/produtos': typeof ProdutosRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/politicas/privacidade': typeof PoliticasPrivacidadeRoute
+  '/politicas/trocas': typeof PoliticasTrocasRoute
+  '/produto/$handle': typeof ProdutoHandleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/atacado': typeof AtacadoRoute
+  '/duvidas': typeof DuvidasRoute
+  '/nossa-historia': typeof NossaHistoriaRoute
+  '/produtos': typeof ProdutosRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/politicas/privacidade': typeof PoliticasPrivacidadeRoute
+  '/politicas/trocas': typeof PoliticasTrocasRoute
+  '/produto/$handle': typeof ProdutoHandleRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/atacado': typeof AtacadoRoute
+  '/duvidas': typeof DuvidasRoute
+  '/nossa-historia': typeof NossaHistoriaRoute
+  '/produtos': typeof ProdutosRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/politicas/privacidade': typeof PoliticasPrivacidadeRoute
+  '/politicas/trocas': typeof PoliticasTrocasRoute
+  '/produto/$handle': typeof ProdutoHandleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/atacado'
+    | '/duvidas'
+    | '/nossa-historia'
+    | '/produtos'
+    | '/sitemap.xml'
+    | '/politicas/privacidade'
+    | '/politicas/trocas'
+    | '/produto/$handle'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/atacado'
+    | '/duvidas'
+    | '/nossa-historia'
+    | '/produtos'
+    | '/sitemap.xml'
+    | '/politicas/privacidade'
+    | '/politicas/trocas'
+    | '/produto/$handle'
+  id:
+    | '__root__'
+    | '/'
+    | '/atacado'
+    | '/duvidas'
+    | '/nossa-historia'
+    | '/produtos'
+    | '/sitemap.xml'
+    | '/politicas/privacidade'
+    | '/politicas/trocas'
+    | '/produto/$handle'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AtacadoRoute: typeof AtacadoRoute
+  DuvidasRoute: typeof DuvidasRoute
+  NossaHistoriaRoute: typeof NossaHistoriaRoute
+  ProdutosRoute: typeof ProdutosRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  PoliticasPrivacidadeRoute: typeof PoliticasPrivacidadeRoute
+  PoliticasTrocasRoute: typeof PoliticasTrocasRoute
+  ProdutoHandleRoute: typeof ProdutoHandleRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/produtos': {
+      id: '/produtos'
+      path: '/produtos'
+      fullPath: '/produtos'
+      preLoaderRoute: typeof ProdutosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nossa-historia': {
+      id: '/nossa-historia'
+      path: '/nossa-historia'
+      fullPath: '/nossa-historia'
+      preLoaderRoute: typeof NossaHistoriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/duvidas': {
+      id: '/duvidas'
+      path: '/duvidas'
+      fullPath: '/duvidas'
+      preLoaderRoute: typeof DuvidasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atacado': {
+      id: '/atacado'
+      path: '/atacado'
+      fullPath: '/atacado'
+      preLoaderRoute: typeof AtacadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +191,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/produto/$handle': {
+      id: '/produto/$handle'
+      path: '/produto/$handle'
+      fullPath: '/produto/$handle'
+      preLoaderRoute: typeof ProdutoHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politicas/trocas': {
+      id: '/politicas/trocas'
+      path: '/politicas/trocas'
+      fullPath: '/politicas/trocas'
+      preLoaderRoute: typeof PoliticasTrocasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politicas/privacidade': {
+      id: '/politicas/privacidade'
+      path: '/politicas/privacidade'
+      fullPath: '/politicas/privacidade'
+      preLoaderRoute: typeof PoliticasPrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AtacadoRoute: AtacadoRoute,
+  DuvidasRoute: DuvidasRoute,
+  NossaHistoriaRoute: NossaHistoriaRoute,
+  ProdutosRoute: ProdutosRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  PoliticasPrivacidadeRoute: PoliticasPrivacidadeRoute,
+  PoliticasTrocasRoute: PoliticasTrocasRoute,
+  ProdutoHandleRoute: ProdutoHandleRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
