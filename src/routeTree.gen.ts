@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProdutosRouteImport } from './routes/produtos'
 import { Route as NossaHistoriaRouteImport } from './routes/nossa-historia'
 import { Route as AtacadoRouteImport } from './routes/atacado'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProdutoHandleRouteImport } from './routes/produto.$handle'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProdutosRoute = ProdutosRouteImport.update({
   id: '/produtos',
   path: '/produtos',
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/atacado': typeof AtacadoRoute
   '/nossa-historia': typeof NossaHistoriaRoute
   '/produtos': typeof ProdutosRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/produto/$handle': typeof ProdutoHandleRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/atacado': typeof AtacadoRoute
   '/nossa-historia': typeof NossaHistoriaRoute
   '/produtos': typeof ProdutosRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/produto/$handle': typeof ProdutoHandleRoute
 }
 export interface FileRoutesById {
@@ -61,6 +69,7 @@ export interface FileRoutesById {
   '/atacado': typeof AtacadoRoute
   '/nossa-historia': typeof NossaHistoriaRoute
   '/produtos': typeof ProdutosRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/produto/$handle': typeof ProdutoHandleRoute
 }
 export interface FileRouteTypes {
@@ -70,15 +79,23 @@ export interface FileRouteTypes {
     | '/atacado'
     | '/nossa-historia'
     | '/produtos'
+    | '/sitemap.xml'
     | '/produto/$handle'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/atacado' | '/nossa-historia' | '/produtos' | '/produto/$handle'
+  to:
+    | '/'
+    | '/atacado'
+    | '/nossa-historia'
+    | '/produtos'
+    | '/sitemap.xml'
+    | '/produto/$handle'
   id:
     | '__root__'
     | '/'
     | '/atacado'
     | '/nossa-historia'
     | '/produtos'
+    | '/sitemap.xml'
     | '/produto/$handle'
   fileRoutesById: FileRoutesById
 }
@@ -87,11 +104,19 @@ export interface RootRouteChildren {
   AtacadoRoute: typeof AtacadoRoute
   NossaHistoriaRoute: typeof NossaHistoriaRoute
   ProdutosRoute: typeof ProdutosRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ProdutoHandleRoute: typeof ProdutoHandleRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/produtos': {
       id: '/produtos'
       path: '/produtos'
@@ -135,8 +160,19 @@ const rootRouteChildren: RootRouteChildren = {
   AtacadoRoute: AtacadoRoute,
   NossaHistoriaRoute: NossaHistoriaRoute,
   ProdutosRoute: ProdutosRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   ProdutoHandleRoute: ProdutoHandleRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
