@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowRight, Gem, HeartHandshake, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import heroImg from "@/assets/hero-rosario.jpg";
 import catCruzes from "@/assets/cat-cruzes.jpg";
@@ -43,14 +43,15 @@ export const Route = createFileRoute("/")({
 });
 
 const categorias = [
-  { nome: "Cruzes", img: catCruzes, alt: "Cruzes douradas para montagem de terços" },
-  { nome: "Medalhas", img: catMedalhas, alt: "Medalhas religiosas douradas e niqueladas" },
+  { nome: "Cruzes", filtro: "Cruz", img: catCruzes, alt: "Cruzes douradas para montagem de terços" },
+  { nome: "Medalhas", filtro: "Medalha", img: catMedalhas, alt: "Medalhas religiosas douradas e niqueladas" },
   {
     nome: "Entremeios",
+    filtro: "Entremeio",
     img: catEntremeios,
     alt: "Entremeios dourados com resina colorida para terços",
   },
-  { nome: "Passantes", img: catPassantes, alt: "Passantes e capas de metal dourado" },
+  { nome: "Passantes", filtro: "Passante", img: catPassantes, alt: "Passantes e capas de metal dourado" },
 ];
 
 function Home() {
@@ -127,7 +128,7 @@ function Home() {
             <Reveal key={cat.nome} delay={i * 80}>
               <Link
                 to="/produtos"
-                search={{ categoria: cat.nome }}
+                search={{ categoria: cat.filtro }}
                 className="group block overflow-hidden rounded-md"
               >
                 <div className="aspect-[4/5] overflow-hidden bg-secondary/50">
@@ -179,7 +180,7 @@ function Home() {
 
           {!isLoading && (!produtos || produtos.length === 0) && (
             <p className="mt-10 text-center text-sm text-muted-foreground">
-              Nenhum produto encontrado por aqui ainda — em breve novas peças estarão disponíveis.
+              Nenhum produto encontrado por aqui ainda. Em breve novas peças estarão disponíveis.
             </p>
           )}
         </div>
@@ -234,7 +235,7 @@ function Home() {
             <p className="mt-4 text-base/relaxed text-institucional/80">
               A Arte Camargos nasceu em 2023, criada por uma família com longa experiência no setor
               de componentes religiosos. Começamos na Shopee, crescemos no Mercado Livre e no TikTok
-              Shop — e agora damos o próximo passo com o nosso canal oficial.
+              Shop. Agora damos o próximo passo com o nosso canal oficial.
             </p>
             <Button asChild className="mt-8" variant="institucional">
               <Link to="/nossa-historia">Conheça nossa história</Link>
