@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
+  useRouterState,
   createRootRouteWithContext,
   useRouter,
   HeadContent,
@@ -126,10 +127,12 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function SiteLayout() {
   useCartSync();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const overHero = pathname === "/";
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-1">
+      <main className={overHero ? "flex-1" : "flex-1 pt-[124px] lg:pt-[152px]"}>
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
       </main>

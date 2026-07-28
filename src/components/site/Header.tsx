@@ -78,7 +78,10 @@ export function Header() {
           <span className="w-10 lg:w-24" />
           <Link to="/" aria-label="Página inicial" className="mx-auto block">
             <BrandLogo
-              className="h-14 w-auto transition-all duration-300 lg:h-20"
+              className={cn(
+                "h-14 w-auto transition-all duration-300 lg:h-20",
+                solid ? "" : "mix-blend-multiply",
+              )}
             />
           </Link>
           <div className="flex w-10 items-center justify-end lg:w-24">
