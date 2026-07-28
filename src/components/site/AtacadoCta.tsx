@@ -28,8 +28,8 @@ export function AtacadoCta({
             Compra para revenda ou grandes quantidades?
           </h2>
           <p className={cn("mt-3 text-sm/relaxed", isDark ? "text-white/80" : "text-institucional/80")}>
-            Fale direto com a gente no WhatsApp e garanta condições especiais de atacado. O
-            atendimento é próximo, humano e feito para o seu negócio crescer.
+            Fale com a nossa equipe no WhatsApp e garanta condições especiais de atacado, com
+            curadoria de peças pensada para o seu negócio crescer.
           </p>
         </div>
         <Button asChild size="lg" variant={isDark ? "gold" : "institucional"}>

@@ -429,7 +429,7 @@ function Produtos() {
               <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
                 {lista.length === 0
                   ? "Em breve novas peças estarão disponíveis por aqui."
-                  : "Tente combinar menos filtros — temos muitas peças esperando por você."}
+                  : "Tente combinar menos filtros, temos muitas peças esperando por você."}
               </p>
               {filtrosAtivos > 0 && (
                 <Button variant="secondary" className="mt-6" onClick={limparFiltros}>

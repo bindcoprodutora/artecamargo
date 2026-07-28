@@ -48,7 +48,7 @@ export const Route = createFileRoute("/produto/$handle")({
       };
     }
     const p = loaderData.product.node;
-    const description = (p.description || `${p.title} — componente para artesanato religioso.`)
+    const description = (p.description || `${p.title}: componente para artesanato religioso.`)
       .slice(0, 155)
       .trim();
     const image = p.images.edges[0]?.node.url;
@@ -206,7 +206,7 @@ function ProdutoDetalhe() {
                 >
                   <img
                     src={img.url}
-                    alt={img.altText ?? `${node.title} — imagem ${i + 1}`}
+                    alt={img.altText ?? `${node.title} imagem ${i + 1}`}
                     loading="lazy"
                     className="h-full w-full object-cover"
                   />
@@ -235,7 +235,7 @@ function ProdutoDetalhe() {
               <span className="inline-flex items-center gap-1.5 text-verde">
                 <Check className="h-4 w-4" />
                 Disponível em estoque
-                {stock !== null && stock > 0 && stock <= 5 ? ` — últimas ${stock} unidades` : ""}
+                {stock !== null && stock > 0 && stock <= 5 ? `, últimas ${stock} unidades` : ""}
               </span>
             ) : (
               <span className="text-muted-foreground">Esta variação está indisponível no momento</span>
@@ -341,7 +341,7 @@ function ProdutoDetalhe() {
             </li>
             <li className="flex items-start gap-2.5">
               <Lock className="mt-0.5 h-4 w-4 flex-shrink-0 text-verde" />
-              Compra segura com checkout Shopify e atendimento próximo.
+              Compra segura com checkout Shopify.
             </li>
           </ul>
 

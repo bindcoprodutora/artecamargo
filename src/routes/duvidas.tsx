@@ -17,7 +17,7 @@ const FAQ = [
   },
   {
     q: "Qual a diferença entre os banhos?",
-    a: "Trabalhamos com banhos como dourado, prateado e ródio. Eles mudam a cor e o acabamento da peça — o dourado tem tom mais quente, o prateado é clássico e o ródio traz um brilho frio e resistente.",
+    a: "Trabalhamos com banhos como dourado, prateado e ródio. Eles mudam a cor e o acabamento da peça: o dourado tem tom mais quente, o prateado é clássico e o ródio traz um brilho frio e resistente.",
   },
   {
     q: "Como conservar as peças?",
@@ -29,11 +29,11 @@ const FAQ = [
   },
   {
     q: "Como acompanho meu pedido?",
-    a: "Assim que o pedido é despachado, você recebe o código de rastreio por e-mail. Se tiver qualquer dúvida no caminho, é só chamar a gente no WhatsApp.",
+    a: "Assim que o pedido é despachado, você recebe o código de rastreio por e-mail. Se tiver qualquer dúvida no caminho, é só chamar no WhatsApp.",
   },
   {
     q: "O pagamento é seguro?",
-    a: "Sim. Todo o pagamento é processado no checkout da Shopify, com criptografia e os principais meios de pagamento — cartão, Pix e boleto.",
+    a: "Sim. Todo o pagamento é processado no checkout da Shopify, com criptografia e os principais meios de pagamento: cartão, Pix e boleto.",
   },
   {
     q: "Posso trocar ou devolver uma peça?",

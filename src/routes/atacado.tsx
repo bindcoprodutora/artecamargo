@@ -18,7 +18,7 @@ export const Route = createFileRoute("/atacado")({
       {
         property: "og:description",
         content:
-          "Atendimento próximo e condições especiais para lojistas e revendedores, direto pelo WhatsApp.",
+          "Condições especiais para lojistas e revendedores, direto pelo WhatsApp.",
       },
     ],
   }),
@@ -31,11 +31,11 @@ function Atacado() {
       <header className="text-center">
         <p className="eyebrow text-madeira">Para lojistas e revendedores</p>
         <h1 className="mt-4 text-4xl leading-tight text-institucional sm:text-5xl">
-          Atacado com atendimento de gente para gente
+          Atacado com condições feitas para o seu negócio
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-base/relaxed text-muted-foreground">
           Nosso site vende no varejo, por peça ou kit. Já os pedidos maiores são conversados
-          diretamente com a nossa equipe — assim conseguimos entender o seu negócio e montar a
+          diretamente com a nossa equipe, e assim conseguimos entender o seu negócio e montar a
           melhor combinação de peças para você.
         </p>
         <GoldDivider className="mt-8" />
@@ -73,7 +73,7 @@ function Atacado() {
             Compra para revenda ou grandes quantidades?
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-sm/relaxed text-white/80">
-            Fale direto com a gente no WhatsApp e garanta condições especiais de atacado.
+            Fale com a nossa equipe no WhatsApp e garanta condições especiais de atacado.
           </p>
           <Button asChild size="lg" variant="gold" className="mt-8">
             <a href={whatsappLink()} target="_blank" rel="noreferrer noopener">

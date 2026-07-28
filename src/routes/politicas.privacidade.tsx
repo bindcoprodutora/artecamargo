@@ -32,7 +32,7 @@ function Privacidade() {
           <p className="mt-2">
             Coletamos apenas o necessário para concluir sua compra e atender você: nome, e-mail,
             telefone, endereço de entrega e dados do pedido. Informações de pagamento são tratadas
-            diretamente pelo checkout seguro da Shopify — não temos acesso aos dados do seu cartão.
+            diretamente pelo checkout seguro da Shopify, e não temos acesso aos dados do seu cartão.
           </p>
         </section>
 

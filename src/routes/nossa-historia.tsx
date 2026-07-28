@@ -54,7 +54,7 @@ function NossaHistoria() {
         <Reveal>
           <p>
             A Arte Camargos Bijouterias nasceu em 2023, criada pelos pais de Natália Camargos
-            especialmente para ela — uma oportunidade de crescimento, aprendizado e independência.
+            especialmente para ela como uma oportunidade de crescimento, aprendizado e independência.
             Um presente em forma de trabalho, feito com a confiança de quem acredita.
           </p>
         </Reveal>
@@ -63,7 +63,7 @@ function NossaHistoria() {
           <p>
             A família já tinha caminhada no setor de componentes para artigos religiosos, através de
             uma empresa anterior. Esse conhecimento sobre produtos, fornecedores e, principalmente,
-            sobre como atender bem, esteve presente desde o primeiro dia.
+            sobre acabamento e qualidade, esteve presente desde o primeiro dia.
           </p>
         </Reveal>
 
@@ -78,7 +78,7 @@ function NossaHistoria() {
         <Reveal>
           <p>
             O começo foi na Shopee, vendendo peça por peça e aprendendo com cada pedido. Depois veio
-            o Mercado Livre, e mais tarde o TikTok Shop — sempre acompanhando onde os clientes
+            o Mercado Livre, e mais tarde o TikTok Shop, sempre acompanhando onde os clientes
             estavam. Este site é o passo mais recente dessa jornada: o canal oficial e definitivo da
             marca.
           </p>
@@ -103,7 +103,7 @@ function NossaHistoria() {
           <p>
             É isso que nos move. Cada cruz, medalha, entremeio ou passante que sai daqui representa
             mais do que um componente: é a chance de ajudar artesãs, empreendedoras, lojistas e
-            comunidades a criarem peças cheias de significado — para vender, presentear ou rezar.
+            comunidades a criarem peças cheias de significado para vender, presentear ou rezar.
           </p>
         </Reveal>
 
