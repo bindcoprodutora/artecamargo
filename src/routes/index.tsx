@@ -26,7 +26,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Cruzes, medalhas, entremeios e passantes de alta qualidade para montagem de terços e peças religiosas. Variedade, acabamento durável e atendimento próximo.",
+          "Cruzes, medalhas, entremeios e passantes de alta qualidade para montagem de terços e peças religiosas. Variedade e acabamento durável.",
       },
       {
         property: "og:title",
