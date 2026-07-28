@@ -62,64 +62,57 @@ function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-background">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pt-10 pb-16 sm:px-6 lg:grid-cols-2 lg:gap-6 lg:px-8 lg:pt-16 lg:pb-24">
-          <div className="order-2 max-w-xl lg:order-1">
-            <p className="eyebrow animate-fade-in text-madeira">Desde 2023 • Feito em família</p>
-            <h1 className="mt-4 text-4xl leading-[1.08] text-institucional sm:text-5xl lg:text-6xl">
+      <section className="relative isolate min-h-[78vh] overflow-hidden lg:min-h-[88vh]">
+        <img
+          src={heroImg}
+          alt="Terço montado com cruz dourada e contas azuis"
+          width={1920}
+          height={1200}
+          fetchPriority="high"
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(7,25,113,0.82)_0%,rgba(7,25,113,0.55)_45%,rgba(7,25,113,0.12)_100%)]" />
+        <span className="animate-shimmer pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(110deg,transparent_35%,rgba(241,202,83,0.18)_50%,transparent_65%)] bg-[length:220%_100%]" />
+
+        <div className="mx-auto flex min-h-[78vh] max-w-7xl items-end px-4 pt-24 pb-16 sm:px-6 lg:min-h-[88vh] lg:px-8 lg:pb-24">
+          <div className="max-w-2xl">
+            <p className="eyebrow animate-fade-in text-dourado">Desde 2023 • Feito em família</p>
+            <h1 className="mt-4 text-4xl leading-[1.05] text-white sm:text-5xl lg:text-6xl">
               Transformar a criatividade em expressão de fé
             </h1>
-            <p className="mt-5 text-base/relaxed text-muted-foreground sm:text-lg/relaxed">
-              Componentes para artesanato religioso — cruzes, medalhas, entremeios e passantes com
+            <p className="mt-5 max-w-xl text-base/relaxed text-white/85 sm:text-lg/relaxed">
+              Componentes para artesanato religioso: cruzes, medalhas, entremeios e passantes com
               acabamento cuidadoso, variedade de modelos e banhos que resistem ao uso do dia a dia.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Button asChild size="lg">
+              <Button asChild size="lg" variant="gold">
                 <Link to="/produtos">
                   Explorar Produtos
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="secondary">
+              <Button asChild size="lg" variant="outlineLight">
                 <Link to="/nossa-historia">Conheça nossa história</Link>
               </Button>
             </div>
           </div>
-
-          <div className="order-1 lg:order-2">
-            <div className="relative overflow-hidden rounded-lg">
-              <img
-                src={heroImg}
-                alt="Terço montado com cruz dourada e contas azuis sobre fundo branco"
-                width={1920}
-                height={1200}
-                fetchPriority="high"
-                className="h-full w-full object-cover"
-              />
-              <span className="animate-shimmer pointer-events-none absolute inset-0 bg-[linear-gradient(110deg,transparent_35%,rgba(241,202,83,0.22)_50%,transparent_65%)] bg-[length:220%_100%]" />
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Pilares */}
-      <section className="border-y border-border bg-secondary/40">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:grid-cols-3 sm:px-6 lg:px-8">
-          {[
-            { icon: Gem, titulo: "Acabamento que dura", texto: "Banhos cuidadosos que preservam o brilho das peças." },
-            { icon: Sparkles, titulo: "Variedade em um só lugar", texto: "Modelos, cores e tamanhos para cada criação." },
-            { icon: HeartHandshake, titulo: "Atendimento próximo", texto: "Gente de verdade para ajudar no seu pedido." },
-          ].map((item, i) => (
-            <Reveal key={item.titulo} delay={i * 90} className="flex items-start gap-3">
-              <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-cobalto" />
-              <div>
-                <h3 className="text-[15px] font-bold">{item.titulo}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">{item.texto}</p>
-              </div>
-            </Reveal>
-          ))}
+      {/* Frase de autoridade */}
+      <section className="border-b border-border bg-background">
+        <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 lg:py-20">
+          <h2 className="text-3xl text-institucional sm:text-4xl">
+            Componentes de fé desde 2023
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-base/relaxed text-muted-foreground">
+            Herdeira de uma família com longa trajetória em artigos religiosos, a Arte Camargos
+            reúne curadoria, acabamento durável e variedade para quem cria com propósito.
+          </p>
+          <GoldDivider className="mt-8" />
         </div>
       </section>
+
 
       {/* Categorias */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
