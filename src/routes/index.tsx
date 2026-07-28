@@ -72,16 +72,16 @@ function Home() {
           fetchPriority="high"
           className="absolute inset-0 -z-10 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(7,25,113,0.82)_0%,rgba(7,25,113,0.55)_45%,rgba(7,25,113,0.12)_100%)]" />
-        <span className="animate-shimmer pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(110deg,transparent_35%,rgba(241,202,83,0.18)_50%,transparent_65%)] bg-[length:220%_100%]" />
 
-        <div className="mx-auto flex min-h-[78vh] max-w-7xl items-end px-4 pt-24 pb-16 sm:px-6 lg:min-h-[88vh] lg:px-8 lg:pb-24">
+        <div className="mx-auto flex min-h-[78vh] max-w-7xl items-center px-4 py-24 sm:px-6 lg:min-h-[88vh] lg:px-8">
           <div className="max-w-2xl">
-            <p className="eyebrow animate-fade-in text-dourado">Desde 2023 • Feito em família</p>
-            <h1 className="mt-4 text-4xl leading-[1.05] text-white sm:text-5xl lg:text-6xl">
+            <p className="eyebrow animate-fade-in text-institucional-dark/70">
+              Desde 2023 • Feito em família
+            </p>
+            <h1 className="mt-4 text-4xl leading-[1.05] text-institucional-dark sm:text-5xl lg:text-6xl">
               Transformar a criatividade em expressão de fé
             </h1>
-            <p className="mt-5 max-w-xl text-base/relaxed text-white/85 sm:text-lg/relaxed">
+            <p className="mt-5 max-w-xl text-base/relaxed text-institucional-dark/85 sm:text-lg/relaxed">
               Componentes para artesanato religioso: cruzes, medalhas, entremeios e passantes com
               acabamento cuidadoso, variedade de modelos e banhos que resistem ao uso do dia a dia.
             </p>
@@ -92,12 +92,13 @@ function Home() {
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outlineLight">
+              <Button asChild size="lg" variant="institucional">
                 <Link to="/nossa-historia">Conheça nossa história</Link>
               </Button>
             </div>
           </div>
         </div>
+
       </section>
 
       {/* Frase de autoridade */}
