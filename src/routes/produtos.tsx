@@ -146,7 +146,8 @@ function Produtos() {
   const faixa: [number, number] = [search.min ?? precoMin, search.max ?? precoMax];
 
   const setSearch = (patch: Partial<ProdutosSearch>) =>
-    navigate({ search: (prev) => ({ ...prev, ...patch }) });
+    navigate({ search: (prev: ProdutosSearch) => ({ ...prev, ...patch }) });
+
 
   const toggle = (key: keyof ProdutosSearch, value: string) =>
     setSearch({ [key]: search[key] === value ? undefined : value } as Partial<ProdutosSearch>);
