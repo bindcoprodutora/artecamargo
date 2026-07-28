@@ -45,7 +45,6 @@ function SearchForm({ onDone, autoFocus }: { onDone?: () => void; autoFocus?: bo
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [hovered, setHovered] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const overHero = pathname === "/";
@@ -57,20 +56,22 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const solid = !overHero || scrolled || hovered || searchOpen || mobileOpen;
+  const solid = !overHero || scrolled || searchOpen || mobileOpen;
 
   return (
     <header
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
       className={cn(
-        "fixed top-0 right-0 left-0 z-50 transition-colors duration-300",
+        "group fixed top-0 right-0 left-0 z-50 transition-colors duration-300",
         solid ? "bg-linho text-foreground" : "text-institucional-dark",
       )}
     >
       {!solid && (
-        <span className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[160%] bg-[linear-gradient(to_bottom,rgba(255,255,255,0.75),rgba(255,255,255,0))]" />
+        <>
+          <span className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[160%] bg-[linear-gradient(to_bottom,rgba(255,255,255,0.75),rgba(255,255,255,0))] transition-opacity duration-300 group-hover:opacity-0" />
+          <span className="bg-linho pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        </>
       )}
+
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Linha 1: logo em destaque */}
