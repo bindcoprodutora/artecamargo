@@ -65,11 +65,11 @@ export function Header() {
       onMouseLeave={() => setHovered(false)}
       className={cn(
         "fixed top-0 right-0 left-0 z-50 transition-colors duration-300",
-        solid ? "bg-linho text-foreground" : "text-white",
+        solid ? "bg-linho text-foreground" : "text-institucional-dark",
       )}
     >
       {!solid && (
-        <span className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[160%] bg-[linear-gradient(to_bottom,rgba(12,23,88,0.55),transparent)]" />
+        <span className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[160%] bg-[linear-gradient(to_bottom,rgba(255,255,255,0.75),rgba(255,255,255,0))]" />
       )}
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -78,10 +78,7 @@ export function Header() {
           <span className="w-10 lg:w-24" />
           <Link to="/" aria-label="Página inicial" className="mx-auto block">
             <BrandLogo
-              className={cn(
-                "h-14 w-auto transition-all duration-300 lg:h-20",
-                solid ? "" : "brightness-0 invert",
-              )}
+              className="h-14 w-auto transition-all duration-300 lg:h-20"
             />
           </Link>
           <div className="flex w-10 items-center justify-end lg:w-24">
