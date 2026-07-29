@@ -31,6 +31,17 @@ export function BrandLogo({ className }: { className?: string }) {
   );
 }
 
+/** Versão ampliada da logo (PNG sem fundo), para o menu expandido. */
+export function BrandLogoFull({ className }: { className?: string }) {
+  return (
+    <img
+      src={logoFullAsset.url}
+      alt="Arte Camargos Bijouterias"
+      className={cn("h-auto w-64 object-contain", className)}
+    />
+  );
+}
+
 export function GoldDivider({ className }: { className?: string }) {
   return (
     <div className={cn("flex items-center justify-center gap-3", className)}>
