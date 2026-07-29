@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import logoAsset from "@/assets/logo-arte-camargos.jpeg.asset.json";
+import logoFullAsset from "@/assets/logo-arte-camargos-full.png.asset.json";
 
 /** Emblema oficial da Arte Camargos (recorte do símbolo do logo). */
 export function BrandMark({ className }: { className?: string }) {
@@ -27,6 +28,17 @@ export function BrandLogo({ className }: { className?: string }) {
       src={logoAsset.url}
       alt="Arte Camargos Bijouterias"
       className={cn("h-auto w-40 object-contain", className)}
+    />
+  );
+}
+
+/** Versão ampliada da logo (PNG sem fundo), para o menu expandido. */
+export function BrandLogoFull({ className }: { className?: string }) {
+  return (
+    <img
+      src={logoFullAsset.url}
+      alt="Arte Camargos Bijouterias"
+      className={cn("h-auto w-64 object-contain", className)}
     />
   );
 }
