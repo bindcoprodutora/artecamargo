@@ -57,67 +57,93 @@ export function Header() {
   }, []);
 
   const solid = !overHero || scrolled || searchOpen || mobileOpen;
+  const compact = scrolled;
 
   return (
     <header
       className={cn(
-        "group fixed top-0 right-0 left-0 z-50 transition-colors duration-300",
+        "fixed top-0 right-0 left-0 z-50 transition-colors duration-300",
         solid ? "bg-linho text-foreground" : "text-institucional-dark",
       )}
     >
       {!solid && (
-        <>
-          <span className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[160%] bg-[linear-gradient(to_bottom,rgba(255,255,255,0.75),rgba(255,255,255,0))] transition-opacity duration-300 group-hover:opacity-0" />
-          <span className="bg-linho pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-        </>
+        <span className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[160%] bg-[linear-gradient(to_bottom,rgba(255,255,255,0.75),rgba(255,255,255,0))]" />
       )}
 
-
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Linha 1: logo em destaque */}
-        <div className="flex items-center justify-between py-3 lg:py-4">
-          <span className="w-10 lg:w-24" />
-          <Link to="/" aria-label="Página inicial" className="mx-auto block">
-            <BrandLogo
-              className={cn(
-                "h-14 w-auto transition-all duration-300 lg:h-20",
-                solid ? "" : "mix-blend-multiply",
-              )}
-            />
-          </Link>
-          <div className="flex w-10 items-center justify-end lg:w-24">
-            <div className="flex items-center lg:hidden">
+        {compact ? (
+          /* Faixa compacta: logo pequena à esquerda, navegação ao centro */
+          <div className="hidden items-center justify-between py-2 lg:flex">
+            <Link to="/" aria-label="Página inicial" className="shrink-0">
+              <BrandLogo className="h-10 w-auto" />
+            </Link>
+            <nav className="flex items-center gap-8" aria-label="Navegação principal">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className="text-[15px] font-semibold tracking-wide transition-opacity hover:opacity-70"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+            <div className="flex shrink-0 items-center gap-1">
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label={searchOpen ? "Fechar busca" : "Buscar"}
+                onClick={() => setSearchOpen((v) => !v)}
+                className="hover:bg-transparent hover:opacity-70"
+              >
+                {searchOpen ? <X className="h-5 w-5" /> : <Search className="h-5 w-5" />}
+              </Button>
               <CartDrawer />
             </div>
           </div>
-        </div>
-
-        {/* Linha 2: navegação */}
-        <div className="relative hidden items-center justify-center pb-4 lg:flex">
-          <nav className="flex items-center gap-8" aria-label="Navegação principal">
-            {navLinks.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className="text-[13px] font-semibold tracking-wide transition-opacity hover:opacity-70"
-              >
-                {link.label}
+        ) : (
+          <>
+            {/* Linha 1: logo em destaque */}
+            <div className="flex items-center justify-between py-3 lg:py-4">
+              <span className="w-10 lg:w-24" />
+              <Link to="/" aria-label="Página inicial" className="mx-auto block">
+                <BrandLogoFull className="h-20 w-auto transition-all duration-300 lg:h-28" />
               </Link>
-            ))}
-          </nav>
-          <div className="absolute right-0 flex items-center gap-1">
-            <Button
-              variant="ghost"
-              size="icon"
-              aria-label={searchOpen ? "Fechar busca" : "Buscar"}
-              onClick={() => setSearchOpen((v) => !v)}
-              className="hover:bg-transparent hover:opacity-70"
-            >
-              {searchOpen ? <X className="h-5 w-5" /> : <Search className="h-5 w-5" />}
-            </Button>
-            <CartDrawer />
-          </div>
-        </div>
+              <div className="flex w-10 items-center justify-end lg:w-24">
+                <div className="flex items-center lg:hidden">
+                  <CartDrawer />
+                </div>
+              </div>
+            </div>
+
+            {/* Linha 2: navegação */}
+            <div className="relative hidden items-center justify-center pb-4 lg:flex">
+              <nav className="flex items-center gap-8" aria-label="Navegação principal">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className="text-[15px] font-semibold tracking-wide transition-opacity hover:opacity-70"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+              <div className="absolute right-0 flex items-center gap-1">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  aria-label={searchOpen ? "Fechar busca" : "Buscar"}
+                  onClick={() => setSearchOpen((v) => !v)}
+                  className="hover:bg-transparent hover:opacity-70"
+                >
+                  {searchOpen ? <X className="h-5 w-5" /> : <Search className="h-5 w-5" />}
+                </Button>
+                <CartDrawer />
+              </div>
+            </div>
+          </>
+        )}
 
         {/* Mobile: menu */}
         <div className="flex items-center justify-between pb-3 lg:hidden">
@@ -155,6 +181,7 @@ export function Header() {
             {searchOpen ? <X className="h-5 w-5" /> : <Search className="h-5 w-5" />}
           </Button>
         </div>
+
 
         {searchOpen && (
           <div className="pb-4">
