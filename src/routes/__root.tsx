@@ -132,7 +132,7 @@ function SiteLayout() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className={overHero ? "flex-1" : "flex-1 pt-[124px] lg:pt-[152px]"}>
+      <main className={overHero ? "flex-1" : "flex-1 pt-[152px] lg:pt-[188px]"}>
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
       </main>
