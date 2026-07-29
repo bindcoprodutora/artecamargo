@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import logoAsset from "@/assets/logo-arte-camargos.jpeg.asset.json";
+import logoFullAsset from "@/assets/logo-arte-camargos-full.png.asset.json";
 
 /** Emblema oficial da Arte Camargos (recorte do símbolo do logo). */
 export function BrandMark({ className }: { className?: string }) {
