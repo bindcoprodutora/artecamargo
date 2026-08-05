@@ -63,14 +63,14 @@ function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate min-h-[78vh] overflow-hidden lg:min-h-[88vh]">
+      <section className="relative isolate min-h-[78vh] overflow-hidden bg-background lg:min-h-[88vh]">
         <img
           src={heroImg}
           alt="Terço montado com cruz dourada e contas azuis"
           width={1920}
           height={1200}
           fetchPriority="high"
-          className="absolute inset-0 -z-10 h-full w-full object-cover"
+          className="absolute inset-0 -z-10 h-full w-full origin-center scale-[0.94] translate-x-[2.5%] object-cover"
         />
 
         <div className="mx-auto flex min-h-[78vh] max-w-7xl items-center px-4 py-24 sm:px-6 lg:min-h-[88vh] lg:px-8">
@@ -81,11 +81,7 @@ function Home() {
             <h1 className="mt-4 text-4xl leading-[1.05] text-institucional-dark sm:text-5xl lg:text-6xl">
               Transformar a criatividade em expressão de fé
             </h1>
-            <p className="mt-5 max-w-xl text-base/relaxed text-institucional-dark/85 sm:text-lg/relaxed">
-              Componentes para artesanato religioso: cruzes, medalhas, entremeios e passantes com
-              acabamento cuidadoso, variedade de modelos e banhos que resistem ao uso do dia a dia.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-10 flex flex-wrap items-center gap-3">
               <Button asChild size="lg" variant="gold">
                 <Link to="/produtos">
                   Explorar Produtos
