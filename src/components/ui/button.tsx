@@ -9,18 +9,21 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground shadow-soft hover:bg-institucional",
+        default:
+          "bg-primary text-primary-foreground shadow-soft hover:bg-institucional hover:scale-[1.04]",
         destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
           "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-accent",
+        secondary:
+          "bg-secondary text-secondary-foreground shadow-sm hover:bg-accent hover:scale-[1.04]",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        institucional: "bg-institucional text-white shadow-soft hover:bg-institucional-dark",
-        gold: "bg-dourado text-institucional shadow-soft hover:brightness-105",
-        whatsapp: "bg-verde text-white shadow-soft hover:brightness-110",
+        institucional:
+          "bg-institucional text-white shadow-soft hover:bg-institucional-dark hover:scale-[1.04]",
+        gold: "bg-dourado text-institucional shadow-soft hover:brightness-105 hover:scale-[1.04]",
+        whatsapp: "bg-verde text-white shadow-soft hover:brightness-110 hover:scale-[1.04]",
         outlineLight:
-          "border border-white/60 bg-transparent text-white hover:bg-white hover:text-institucional",
+          "border border-white/60 bg-transparent text-white hover:bg-white hover:text-institucional hover:scale-[1.04]",
       },
       size: {
         default: "h-10 px-5 py-2",
