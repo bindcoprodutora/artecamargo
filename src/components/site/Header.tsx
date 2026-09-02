@@ -50,141 +50,144 @@ export function Header() {
   const overHero = pathname === "/";
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const solid = !overHero || scrolled || searchOpen || mobileOpen;
-  const compact = scrolled;
+  const forceSolid = searchOpen || mobileOpen;
+  const isCompact = scrolled || forceSolid || !overHero;
 
   return (
     <header
       className={cn(
-        "fixed top-0 right-0 left-0 z-50 transition-colors duration-300",
-        solid ? "bg-linho text-foreground" : "text-institucional-dark",
+        "fixed top-0 right-0 left-0 z-50 transition-all duration-500 ease-out",
+        isCompact
+          ? "border-b border-border/50 bg-white/85 text-foreground shadow-[var(--shadow-soft)] backdrop-blur-md"
+          : "bg-transparent text-institucional-dark"
       )}
     >
-      {!solid && (
-        <span className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[160%] bg-[linear-gradient(to_bottom,rgba(255,255,255,0.75),rgba(255,255,255,0))]" />
+      {!isCompact && (
+        <span className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[180%] bg-gradient-to-b from-white/75 to-transparent" />
       )}
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {compact ? (
-          /* Faixa compacta: logo pequena à esquerda, navegação ao centro */
-          <div className="hidden items-center justify-between py-2 lg:flex">
-            <Link to="/" aria-label="Página inicial" className="shrink-0">
-              <BrandLogo className="h-10 w-auto" />
-            </Link>
-            <nav className="flex items-center gap-8" aria-label="Navegação principal">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className="text-[15px] font-semibold tracking-wide transition-opacity hover:opacity-70"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-            <div className="flex shrink-0 items-center gap-1">
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label={searchOpen ? "Fechar busca" : "Buscar"}
-                onClick={() => setSearchOpen((v) => !v)}
-                className="hover:bg-transparent hover:opacity-70"
-              >
-                {searchOpen ? <X className="h-5 w-5" /> : <Search className="h-5 w-5" />}
-              </Button>
-              <CartDrawer />
-            </div>
-          </div>
-        ) : (
-          <>
-            {/* Linha 1: logo em destaque */}
-            <div className="flex items-center justify-between py-3 lg:py-4">
-              <span className="w-10 lg:w-24" />
-              <Link to="/" aria-label="Página inicial" className="mx-auto block">
-                <BrandLogoFull className="h-20 w-auto transition-all duration-300 lg:h-28" />
-              </Link>
-              <div className="flex w-10 items-center justify-end lg:w-24">
-                <div className="flex items-center lg:hidden">
-                  <CartDrawer />
-                </div>
-              </div>
-            </div>
-
-            {/* Linha 2: navegação */}
-            <div className="relative hidden items-center justify-center pb-4 lg:flex">
-              <nav className="flex items-center gap-8" aria-label="Navegação principal">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.to}
-                    to={link.to}
-                    className="text-[15px] font-semibold tracking-wide transition-opacity hover:opacity-70"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </nav>
-              <div className="absolute right-0 flex items-center gap-1">
+      <div
+        className={cn(
+          "relative mx-auto max-w-7xl px-4 transition-all duration-500 ease-out sm:px-6 lg:px-8",
+          isCompact ? "py-2" : "py-4 lg:py-5"
+        )}
+      >
+        <div
+          className={cn(
+            "relative transition-all duration-500 ease-out",
+            isCompact ? "min-h-[56px] lg:min-h-[64px]" : "min-h-[120px] lg:min-h-[160px]"
+          )}
+        >
+          {/* Mobile menu */}
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 lg:hidden">
+            <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+              <SheetTrigger asChild>
                 <Button
                   variant="ghost"
                   size="icon"
-                  aria-label={searchOpen ? "Fechar busca" : "Buscar"}
-                  onClick={() => setSearchOpen((v) => !v)}
+                  aria-label="Abrir menu"
                   className="hover:bg-transparent hover:opacity-70"
                 >
-                  {searchOpen ? <X className="h-5 w-5" /> : <Search className="h-5 w-5" />}
+                  <Menu className="h-5 w-5" />
                 </Button>
-                <CartDrawer />
-              </div>
-            </div>
-          </>
-        )}
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[86vw] max-w-sm">
+                <SheetTitle className="sr-only">Menu</SheetTitle>
+                <div className="flex flex-col gap-6 px-5 pt-10">
+                  <SearchForm onDone={() => setMobileOpen(false)} />
+                  <nav className="flex flex-col gap-1" aria-label="Navegação">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.to}
+                        to={link.to}
+                        onClick={() => setMobileOpen(false)}
+                        className="text-display border-b border-border/60 py-3 text-lg"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </nav>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
 
-        {/* Mobile: menu */}
-        <div className="flex items-center justify-between pb-3 lg:hidden">
-          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label="Abrir menu">
-                <Menu className="h-5 w-5" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[86vw] max-w-sm">
-              <SheetTitle className="sr-only">Menu</SheetTitle>
-              <div className="flex flex-col gap-6 px-5 pt-10">
-                <SearchForm onDone={() => setMobileOpen(false)} />
-                <nav className="flex flex-col gap-1" aria-label="Navegação">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.to}
-                      to={link.to}
-                      onClick={() => setMobileOpen(false)}
-                      className="text-display border-b border-border/60 py-3 text-lg"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </nav>
-              </div>
-            </SheetContent>
-          </Sheet>
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Buscar"
-            onClick={() => setSearchOpen((v) => !v)}
+          {/* Logo */}
+          <Link
+            to="/"
+            aria-label="Página inicial"
+            className={cn(
+              "absolute transition-all duration-500 ease-out",
+              isCompact
+                ? "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:left-0 lg:-translate-x-0"
+                : "left-1/2 top-3 lg:top-4 -translate-x-1/2"
+            )}
           >
-            {searchOpen ? <X className="h-5 w-5" /> : <Search className="h-5 w-5" />}
-          </Button>
+            <BrandLogoFull
+              className={cn(
+                "h-16 w-auto transition-all duration-500 ease-out lg:h-24",
+                isCompact ? "pointer-events-none opacity-0" : "opacity-100"
+              )}
+            />
+            <BrandLogo
+              className={cn(
+                "absolute left-0 top-0 h-10 w-auto transition-all duration-500 ease-out",
+                isCompact ? "opacity-100" : "pointer-events-none opacity-0"
+              )}
+            />
+          </Link>
+
+          {/* Desktop nav */}
+          <nav
+            className={cn(
+              "hidden items-center gap-8 transition-all duration-500 ease-out lg:flex",
+              isCompact
+                ? "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bottom-auto"
+                : "absolute bottom-3 left-1/2 -translate-x-1/2 top-auto lg:bottom-4"
+            )}
+            aria-label="Navegação principal"
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="relative text-[15px] font-semibold tracking-wide after:absolute after:bottom-[-3px] after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:opacity-80 hover:after:w-full"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Actions */}
+          <div
+            className={cn(
+              "absolute right-0 flex items-center gap-1 transition-all duration-500 ease-out",
+              isCompact
+                ? "top-1/2 -translate-y-1/2 bottom-auto"
+                : "bottom-3 top-auto lg:bottom-4"
+            )}
+          >
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label={searchOpen ? "Fechar busca" : "Buscar"}
+              onClick={() => setSearchOpen((v) => !v)}
+              className="hover:bg-transparent hover:opacity-70"
+            >
+              {searchOpen ? <X className="h-5 w-5" /> : <Search className="h-5 w-5" />}
+            </Button>
+            <CartDrawer />
+          </div>
         </div>
 
-
         {searchOpen && (
-          <div className="pb-4">
+          <div className="pb-4 pt-2">
             <div className="mx-auto max-w-xl">
               <SearchForm autoFocus onDone={() => setSearchOpen(false)} />
             </div>
