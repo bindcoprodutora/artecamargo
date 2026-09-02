@@ -118,31 +118,19 @@ export function Header() {
             </Sheet>
           </div>
 
-          {/* Logo */}
+          {/* Logo — sempre à esquerda, apenas muda de escala */}
           <Link
             to="/"
             aria-label="Página inicial"
             className={cn(
-              "absolute transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
-              isCompact
-                ? "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:left-0 lg:-translate-x-0"
-                : "left-1/2 top-3 lg:top-4 -translate-x-1/2"
+              "absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:left-0 lg:-translate-x-0",
+              isCompact ? "lg:top-1/2 lg:-translate-y-1/2" : "lg:top-3 lg:-translate-y-0"
             )}
           >
             <BrandLogoFull
               className={cn(
-                "h-16 w-auto origin-center transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:h-24",
-                isCompact
-                  ? "pointer-events-none translate-y-[-12px] scale-[0.92] opacity-0"
-                  : "translate-y-0 scale-100 opacity-100"
-              )}
-            />
-            <BrandLogo
-              className={cn(
-                "absolute left-0 top-0 h-10 w-auto origin-left transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                isCompact
-                  ? "translate-x-0 scale-100 opacity-100"
-                  : "pointer-events-none translate-x-[-16px] scale-[0.9] opacity-0"
+                "h-16 w-auto origin-left transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform",
+                isCompact ? "lg:h-14" : "lg:h-28"
               )}
             />
           </Link>
@@ -152,8 +140,8 @@ export function Header() {
             className={cn(
               "hidden items-center gap-8 transition-all duration-500 ease-out lg:flex",
               isCompact
-                ? "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bottom-auto"
-                : "absolute bottom-3 left-1/2 -translate-x-1/2 top-auto lg:bottom-4"
+                ? "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                : "absolute bottom-3 left-1/2 -translate-x-1/2 lg:bottom-4"
             )}
             aria-label="Navegação principal"
           >
@@ -161,7 +149,7 @@ export function Header() {
               <Link
                 key={link.to}
                 to={link.to}
-                className="relative text-[15px] font-semibold tracking-wide after:absolute after:bottom-[-3px] after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:opacity-80 hover:after:w-full"
+                className="relative text-base font-semibold tracking-wide after:absolute after:bottom-[-3px] after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:opacity-80 hover:after:w-full"
               >
                 {link.label}
               </Link>
@@ -173,8 +161,8 @@ export function Header() {
             className={cn(
               "absolute right-0 flex items-center gap-1 transition-all duration-500 ease-out",
               isCompact
-                ? "top-1/2 -translate-y-1/2 bottom-auto"
-                : "bottom-3 top-auto lg:bottom-4"
+                ? "top-1/2 -translate-y-1/2"
+                : "top-3 -translate-y-0 lg:top-4"
             )}
           >
             <Button
