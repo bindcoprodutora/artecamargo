@@ -80,8 +80,8 @@ export function Header() {
       >
         <div
           className={cn(
-            "relative transition-all duration-500 ease-out",
-            isCompact ? "min-h-[56px] lg:min-h-[64px]" : "min-h-[120px] lg:min-h-[160px]"
+            "relative flex items-center justify-between transition-all duration-500 ease-out",
+            isCompact ? "min-h-[56px] lg:min-h-[64px]" : "min-h-[72px] lg:min-h-[88px]"
           )}
         >
           {/* Mobile menu */}
@@ -123,25 +123,20 @@ export function Header() {
             to="/"
             aria-label="Página inicial"
             className={cn(
-              "absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:left-0 lg:top-1/2 lg:-translate-x-0 lg:-translate-y-1/2"
+              "absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:static lg:translate-x-0 lg:translate-y-0"
             )}
           >
             <BrandLogoFull
               className={cn(
                 "h-16 w-auto origin-left transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform",
-                isCompact ? "lg:h-14" : "lg:h-28"
+                isCompact ? "lg:h-14" : "lg:h-20"
               )}
             />
           </Link>
 
           {/* Desktop nav */}
           <nav
-            className={cn(
-              "hidden items-center gap-8 transition-all duration-500 ease-out lg:flex",
-              isCompact
-                ? "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-                : "absolute bottom-3 left-1/2 -translate-x-1/2 lg:bottom-4"
-            )}
+            className="hidden items-center gap-8 transition-all duration-500 ease-out lg:flex"
             aria-label="Navegação principal"
           >
             {navLinks.map((link) => (
@@ -156,11 +151,7 @@ export function Header() {
           </nav>
 
           {/* Actions */}
-          <div
-            className={cn(
-              "absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-1 transition-all duration-500 ease-out"
-            )}
-          >
+          <div className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-1 lg:static lg:translate-y-0">
             <Button
               variant="ghost"
               size="icon"
