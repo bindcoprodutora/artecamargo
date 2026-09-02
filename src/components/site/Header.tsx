@@ -123,7 +123,7 @@ export function Header() {
             to="/"
             aria-label="Página inicial"
             className={cn(
-              "absolute transition-all duration-500 ease-out",
+              "absolute transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
               isCompact
                 ? "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:left-0 lg:-translate-x-0"
                 : "left-1/2 top-3 lg:top-4 -translate-x-1/2"
@@ -131,14 +131,18 @@ export function Header() {
           >
             <BrandLogoFull
               className={cn(
-                "h-16 w-auto transition-all duration-500 ease-out lg:h-24",
-                isCompact ? "pointer-events-none opacity-0" : "opacity-100"
+                "h-16 w-auto origin-center transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:h-24",
+                isCompact
+                  ? "pointer-events-none translate-y-[-12px] scale-[0.92] opacity-0"
+                  : "translate-y-0 scale-100 opacity-100"
               )}
             />
             <BrandLogo
               className={cn(
-                "absolute left-0 top-0 h-10 w-auto transition-all duration-500 ease-out",
-                isCompact ? "opacity-100" : "pointer-events-none opacity-0"
+                "absolute left-0 top-0 h-10 w-auto origin-left transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                isCompact
+                  ? "translate-x-0 scale-100 opacity-100"
+                  : "pointer-events-none translate-x-[-16px] scale-[0.9] opacity-0"
               )}
             />
           </Link>
