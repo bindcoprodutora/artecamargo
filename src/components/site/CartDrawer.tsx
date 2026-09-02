@@ -41,7 +41,12 @@ export function CartDrawer() {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative" aria-label="Abrir carrinho">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="relative hover:bg-transparent hover:opacity-70"
+          aria-label="Abrir carrinho"
+        >
           <ShoppingBag className="h-5 w-5" />
           {totalItems > 0 && (
             <Badge className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-dourado p-0 text-[10px] text-institucional">

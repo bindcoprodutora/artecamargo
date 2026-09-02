@@ -73,7 +73,7 @@ function Home() {
           className="absolute inset-0 -z-10 h-full w-full origin-center scale-[0.94] translate-x-[2.5%] object-cover"
         />
 
-        <div className="mx-auto flex min-h-[78vh] max-w-7xl items-center px-4 py-24 sm:px-6 lg:min-h-[88vh] lg:px-8">
+        <div className="mx-auto flex min-h-[78vh] max-w-7xl items-center px-4 pt-36 pb-16 sm:px-6 sm:pt-44 sm:pb-20 lg:min-h-[88vh] lg:px-8 lg:pt-52 lg:pb-24">
           <div className="max-w-2xl">
             <p className="eyebrow animate-fade-in text-institucional-dark/70">
               Desde 2023 • Feito em família
