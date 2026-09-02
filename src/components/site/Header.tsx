@@ -123,8 +123,7 @@ export function Header() {
             to="/"
             aria-label="Página inicial"
             className={cn(
-              "absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:left-0 lg:-translate-x-0",
-              isCompact ? "lg:top-1/2 lg:-translate-y-1/2" : "lg:top-3 lg:-translate-y-0"
+              "absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:left-0 lg:top-1/2 lg:-translate-x-0 lg:-translate-y-1/2"
             )}
           >
             <BrandLogoFull
@@ -159,10 +158,7 @@ export function Header() {
           {/* Actions */}
           <div
             className={cn(
-              "absolute right-0 flex items-center gap-1 transition-all duration-500 ease-out",
-              isCompact
-                ? "top-1/2 -translate-y-1/2"
-                : "top-3 -translate-y-0 lg:top-4"
+              "absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-1 transition-all duration-500 ease-out"
             )}
           >
             <Button
